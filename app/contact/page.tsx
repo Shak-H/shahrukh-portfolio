@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
+import EmailLink from "@/components/EmailLink";
 import type { Metadata } from "next";
-import { FiMail, FiLinkedin, FiGithub } from "react-icons/fi";
+import { FiLinkedin, FiGithub } from "react-icons/fi";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -18,13 +19,7 @@ export default function Contact() {
       </p>
       <ul aria-label="Contact links" className="space-y-3">
         <li>
-          <a
-            href="mailto:shahrukh.hughes@gmail.com"
-            className="inline-flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
-          >
-            <FiMail size={18} aria-hidden="true" />
-            Email
-          </a>
+          <EmailLink />
         </li>
         <li>
           <a
