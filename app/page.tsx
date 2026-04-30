@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import ProjectCard from "@/components/ProjectCard";
-import Link from "next/link";
 
 export default function Home() {
   return (
