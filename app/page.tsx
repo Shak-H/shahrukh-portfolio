@@ -36,7 +36,12 @@ export default function Home() {
             >
               LinkedIn
             </a>
-            <a href="/Shahrukh-Hughes-CV.pdf" download className="underline">
+            <a
+              href="/Shahrukh-Hughes-CV.pdf"
+              download
+              aria-label="Download CV (PDF)"
+              className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
+            >
               Download CV
             </a>
           </div>
@@ -51,11 +56,13 @@ export default function Home() {
               title="PersonAI (Satalia)"
               description="AI-driven platform for creating personas and simulating focus group conversations."
               href="/projects/personai"
+              contributions="Sole FE • Redux architecture • Complex workflows"
             />
             <ProjectCard
               title="Marston’s Order & Pay"
               description="Mobile-first ordering platform built with Next.js, supporting real-world customer interactions."
               href="/projects/marstons"
+              contributions="Forms • GTM analytics • Ordering flows"
             />
           </div>
         </section>
