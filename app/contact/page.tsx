@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
+import { FiMail, FiLinkedin, FiGithub } from "react-icons/fi";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,12 +16,13 @@ export default function Contact() {
       <p className="text-gray-600 dark:text-gray-300 mb-4">
         Feel free to reach out:
       </p>
-      <ul aria-label="Contact links" className="space-y-2">
+      <ul aria-label="Contact links" className="space-y-3">
         <li>
           <a
             href="mailto:shahrukh.hughes@gmail.com"
-            className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
+            className="inline-flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
           >
+            <FiMail size={18} aria-hidden="true" />
             Email
           </a>
         </li>
@@ -29,8 +31,9 @@ export default function Contact() {
             href="https://linkedin.com/in/shahrukh-hughes"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
+            className="inline-flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
           >
+            <FiLinkedin size={18} aria-hidden="true" />
             LinkedIn
             <span className="sr-only"> (opens in new tab)</span>
           </a>
@@ -40,8 +43,9 @@ export default function Contact() {
             href="https://github.com/Shak-H"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
+            className="inline-flex items-center gap-2 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
           >
+            <FiGithub size={18} aria-hidden="true" />
             GitHub
             <span className="sr-only"> (opens in new tab)</span>
           </a>

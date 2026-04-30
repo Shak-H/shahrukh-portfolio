@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import ProjectCard from "@/components/ProjectCard";
+import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
 
 export default function Home() {
   return (
@@ -19,13 +20,14 @@ export default function Home() {
             React, Next.js, and TypeScript. I’ve worked on AI-driven products
             and large-scale ordering platforms in production environments.
           </p>
-          <div className="mt-6 flex gap-6">
+          <div className="mt-6 flex gap-6 items-center">
             <a
               href="https://github.com/Shak-H"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
             >
+              <FiGithub size={18} aria-hidden="true" />
               GitHub
               <span className="sr-only"> (opens in new tab)</span>
             </a>
@@ -33,8 +35,9 @@ export default function Home() {
               href="https://linkedin.com/in/shahrukh-hughes"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
             >
+              <FiLinkedin size={18} aria-hidden="true" />
               LinkedIn
               <span className="sr-only"> (opens in new tab)</span>
             </a>
@@ -42,8 +45,9 @@ export default function Home() {
               href="/Shahrukh-Hughes-CV.pdf"
               download
               aria-label="Download CV (PDF)"
-              className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
+              className="inline-flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
             >
+              <FiDownload size={18} aria-hidden="true" />
               Download CV
             </a>
           </div>
