@@ -12,7 +12,7 @@ export default function PersonAI() {
       </h1>
 
       {/* Intro */}
-      <p className="mb-6 text-gray-600">
+      <p className="mb-6 text-gray-600 dark:text-gray-300">
         PersonAI is an AI-driven platform that enables users to create audience
         personas and simulate focus group conversations, allowing insights to be
         generated at scale.
@@ -20,7 +20,7 @@ export default function PersonAI() {
 
       {/* Context */}
       <h2 className="font-semibold mt-8 mb-2">Context</h2>
-      <p className="mb-4 text-gray-600">
+      <p className="mb-4 text-gray-600 dark:text-gray-300">
         Built at Satalia (part of VML), this was an early-stage AI product. I
         joined early as the sole frontend engineer, working within a
         cross-functional team of product, backend, QA, and DevOps. I
@@ -31,7 +31,7 @@ export default function PersonAI() {
 
       {/* Role */}
       <h2 className="font-semibold mt-8 mb-2">My Role</h2>
-      <ul className="list-disc pl-5 mb-4 text-gray-600">
+      <ul className="list-disc pl-5 mb-4 text-gray-600 dark:text-gray-300">
         <li>Sole frontend engineer on the project</li>
         <li>Owned frontend architecture and overall codebase structure</li>
         <li>Delivered all UI features from concept through to production</li>
@@ -43,7 +43,7 @@ export default function PersonAI() {
 
       {/* Tech */}
       <h2 className="font-semibold mt-8 mb-2">Tech Stack</h2>
-      <p className="mb-6 text-gray-600">React, Redux, REST APIs</p>
+      <p className="mb-6 text-gray-600 dark:text-gray-300">React, Redux, REST APIs</p>
 
       {/* Challenges */}
       <h2 className="font-semibold mt-8 mb-2">Challenges & Decisions</h2>
@@ -51,7 +51,7 @@ export default function PersonAI() {
       <h3 className="font-medium mt-4 mb-1">
         Designing for real-world workflows
       </h3>
-      <p className="mb-4 text-gray-600">
+      <p className="mb-4 text-gray-600 dark:text-gray-300">
         The core challenge wasn’t just building features, but ensuring the
         application behaved predictably under real-world conditions. Users could
         trigger long-running processes, navigate between screens, upload media,
@@ -63,7 +63,7 @@ export default function PersonAI() {
       </p>
 
       <h3 className="font-medium mt-4 mb-1">State management strategy</h3>
-      <p className="mb-4 text-gray-600">
+      <p className="mb-4 text-gray-600 dark:text-gray-300">
         I treated Redux as workflow infrastructure rather than a global store.
         It was used for shared, durable state such as user session data and
         long-running processes (e.g. background jobs and uploads), while
@@ -71,28 +71,28 @@ export default function PersonAI() {
       </p>
 
       <h3 className="font-medium mt-4 mb-1">Handling persistence</h3>
-      <p className="mb-4 text-gray-600">
+      <p className="mb-4 text-gray-600 dark:text-gray-300">
         Durable state was persisted across sessions, while volatile state was
         cleared on rehydration to avoid restoring invalid states such as stale
         loading indicators or broken async flows.
       </p>
 
       <h3 className="font-medium mt-4 mb-1">Workflow modelling</h3>
-      <p className="mb-4 text-gray-600">
+      <p className="mb-4 text-gray-600 dark:text-gray-300">
         Long-running processes were modelled explicitly with statuses and
         progress indicators, allowing the UI to accurately reflect system state
         and provide better recovery paths.
       </p>
 
       <h3 className="font-medium mt-4 mb-1">Performance</h3>
-      <p className="mb-6 text-gray-600">
+      <p className="mb-6 text-gray-600 dark:text-gray-300">
         Performance improvements focused on user impact, including route-based
         code splitting and reducing unnecessary recalculations in complex flows.
       </p>
 
       {/* Impact */}
       <h2 className="font-semibold mt-8 mb-2">Impact</h2>
-      <p className="text-gray-600">
+      <p className="text-gray-600 dark:text-gray-300">
         The result was a more stable and predictable product experience. Users
         could navigate long-running workflows with fewer inconsistencies and
         clearer feedback, while the underlying state model became more
