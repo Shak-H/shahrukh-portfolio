@@ -20,7 +20,10 @@ export default function Home() {
             React, Next.js, and TypeScript. I’ve worked on AI-driven products
             and large-scale ordering platforms in production environments.
           </p>
-          <div className="mt-6 flex gap-6 items-center">
+          <div
+            className="mt-6 flex
+          gap-4 sm:gap-6 items-center"
+          >
             <a
               href="https://github.com/Shak-H"
               target="_blank"
@@ -48,7 +51,7 @@ export default function Home() {
               className="inline-flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
             >
               <FiDownload size={18} aria-hidden="true" />
-              Download CV
+              <span className="whitespace-nowrap">Download CV</span>
             </a>
           </div>
         </section>
