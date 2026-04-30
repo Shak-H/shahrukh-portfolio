@@ -49,7 +49,16 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section></section>
+      <section>
+        <h2 className="text-2xl font-semibold">About</h2>
+
+        <p className="text-gray-600">
+          Frontend engineer with over 4 years of experience building production
+          applications across e-commerce, AI, and customer-facing platforms.
+          Experienced working in cross-functional teams and delivering features
+          end-to-end in fast-paced environments.
+        </p>
+      </section>
     </>
   );
 }
