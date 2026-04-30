@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata = {
-  title: "Shahrukh Hughes | Frontend Engineer",
-  description: "Frontend Engineer portfolio",
+export const metadata: Metadata = {
+  title: {
+    default: "Shahrukh Hughes | Frontend Engineer",
+    template: "%s | Shahrukh Hughes",
+  },
+  description:
+    "Frontend engineer building scalable, production-ready React applications with Next.js and TypeScript.",
+  openGraph: {
+    title: "Shahrukh Hughes | Frontend Engineer",
+    description:
+      "Frontend engineer building scalable, production-ready React applications with Next.js and TypeScript.",
+    url: "https://shahrukhhughes.com",
+    siteName: "Shahrukh Hughes",
+    locale: "en_GB",
+    type: "website",
+  },
+  metadataBase: new URL("https://shahrukhhughes.com"),
 };
 
 export default function RootLayout({

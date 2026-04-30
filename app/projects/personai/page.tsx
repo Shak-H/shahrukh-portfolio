@@ -1,4 +1,11 @@
 import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "PersonAI – AI Personas & Focus Groups",
+  description:
+    "Case study: building an AI-driven platform for creating personas and simulating focus group conversations at Satalia.",
+};
 
 export default function PersonAI() {
   return (
@@ -43,7 +50,9 @@ export default function PersonAI() {
 
       {/* Tech */}
       <h2 className="font-semibold mt-8 mb-2">Tech Stack</h2>
-      <p className="mb-6 text-gray-600 dark:text-gray-300">React, Redux, REST APIs</p>
+      <p className="mb-6 text-gray-600 dark:text-gray-300">
+        React, Redux, REST APIs
+      </p>
 
       {/* Challenges */}
       <h2 className="font-semibold mt-8 mb-2">Challenges & Decisions</h2>

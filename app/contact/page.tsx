@@ -1,4 +1,11 @@
 import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with Shahrukh Hughes via email, LinkedIn, or GitHub.",
+};
 
 export default function Contact() {
   return (

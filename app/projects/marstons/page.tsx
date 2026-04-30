@@ -1,4 +1,11 @@
 import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Marston's Order & Pay",
+  description:
+    "Case study: building a mobile-first ordering platform with Next.js for real-world pub environments.",
+};
 
 export default function Marstons() {
   return (

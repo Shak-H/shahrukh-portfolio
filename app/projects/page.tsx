@@ -1,5 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Selected frontend projects including AI platforms and mobile-first ordering applications.",
+};
 
 export default function Projects() {
   return (
