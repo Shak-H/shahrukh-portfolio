@@ -7,7 +7,8 @@ export default function PersonAI() {
 
       {/* Title */}
       <h1 className="text-3xl font-bold mb-4">
-        PersonAI – AI Personas & Focus Group Platform
+        PersonAI – AI generated audiences, personas with the ability to chat
+        with and simulate focus groups
       </h1>
 
       {/* Intro */}
@@ -42,7 +43,7 @@ export default function PersonAI() {
 
       {/* Tech */}
       <h2 className="font-semibold mt-8 mb-2">Tech Stack</h2>
-      <p className="mb-6 text-gray-600">React, TypeScript, Redux, REST APIs</p>
+      <p className="mb-6 text-gray-600">React, Redux, REST APIs</p>
 
       {/* Challenges */}
       <h2 className="font-semibold mt-8 mb-2">Challenges & Decisions</h2>
