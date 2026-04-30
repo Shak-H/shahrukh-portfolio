@@ -2,8 +2,10 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="flex justify-between mb-10">
-      <h1 className="font-semibold">Shahrukh Hughes</h1>
+    <nav aria-label="Main navigation" className="flex justify-between mb-10">
+      <Link href="/" className="font-semibold">
+        Shahrukh Hughes
+      </Link>
       <div className="flex gap-6">
         <Link
           href="/"

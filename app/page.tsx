@@ -27,6 +27,7 @@ export default function Home() {
               className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
             >
               GitHub
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
             <a
               href="https://linkedin.com/in/shahrukh-hughes"
@@ -35,6 +36,7 @@ export default function Home() {
               className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
             >
               LinkedIn
+              <span className="sr-only"> (opens in new tab)</span>
             </a>
             <a
               href="/Shahrukh-Hughes-CV.pdf"

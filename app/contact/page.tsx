@@ -8,7 +8,7 @@ export default function Contact() {
       <p className="text-gray-600 dark:text-gray-300 mb-4">
         Feel free to reach out:
       </p>
-      <ul className="space-y-2">
+      <ul aria-label="Contact links" className="space-y-2">
         <li>
           <a
             href="mailto:shahrukh.hughes@gmail.com"
@@ -25,6 +25,7 @@ export default function Contact() {
             className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
           >
             LinkedIn
+            <span className="sr-only"> (opens in new tab)</span>
           </a>
         </li>
         <li>
@@ -35,6 +36,7 @@ export default function Contact() {
             className="underline hover:text-blue-600 dark:hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition-colors"
           >
             GitHub
+            <span className="sr-only"> (opens in new tab)</span>
           </a>
         </li>
       </ul>
