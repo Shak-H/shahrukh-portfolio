@@ -12,12 +12,12 @@ export const metadata: Metadata = {
     title: "Shahrukh Hughes | Frontend Engineer",
     description:
       "Frontend engineer building scalable, production-ready React applications with Next.js and TypeScript.",
-    url: "https://shahrukhhughes.com",
+    url: "https://shahrukhhughes.co.uk",
     siteName: "Shahrukh Hughes",
     locale: "en_GB",
     type: "website",
   },
-  metadataBase: new URL("https://shahrukhhughes.com"),
+  metadataBase: new URL("https://shahrukhhughes.co.uk"),
 };
 
 export default function RootLayout({
