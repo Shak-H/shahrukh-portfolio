@@ -36,6 +36,9 @@ export default function Home() {
             >
               LinkedIn
             </a>
+            <a href="/Shahrukh-Hughes-CV.pdf" download className="underline">
+              Download CV
+            </a>
           </div>
         </section>
 
