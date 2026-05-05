@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     siteName: "Shahrukh Hughes",
     locale: "en_GB",
     type: "website",
+    images: ["/preview.png"],
   },
   metadataBase: new URL("https://shahrukhhughes.co.uk"),
 };
