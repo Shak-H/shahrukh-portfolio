@@ -2,9 +2,9 @@ import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PersonAI – AI Personas & Focus Groups",
+  title: "PersonAI – AI Persona & Focus Group Platform",
   description:
-    "Case study: building an AI-driven platform for creating personas and simulating focus group conversations at Satalia.",
+    "Case study: building an AI-driven persona platform with simulated focus groups, persona chat workflows, and scalable frontend architecture at Satalia.",
 };
 
 export default function PersonAI() {
@@ -14,15 +14,14 @@ export default function PersonAI() {
 
       {/* Title */}
       <h1 className="text-3xl font-bold mb-4">
-        PersonAI – AI generated audiences, personas with the ability to chat
-        with and simulate focus groups
+        PersonAI – AI Persona & Focus Group Platform
       </h1>
 
       {/* Intro */}
       <p className="mb-6 text-gray-600 dark:text-gray-300">
-        PersonAI is an AI-driven platform that enables users to create audience
-        personas and simulate focus group conversations, allowing insights to be
-        generated at scale.
+        PersonAI is an AI-driven platform that enables users to generate
+        personas, interact with them through chats, and simulate focus group
+        conversations to explore insights at scale.
       </p>
 
       {/* Context */}

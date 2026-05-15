@@ -17,8 +17,9 @@ export default function Home() {
 
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl">
             I design and build performant, user-focused web applications using
-            React, Next.js, and TypeScript. I’ve worked on AI-driven products
-            and large-scale ordering platforms in production environments.
+            React, Next.js, and TypeScript. I’ve worked on AI-driven products,
+            workflow-heavy platforms, and customer-facing applications in
+            production environments.
           </p>
           <div
             className="mt-6 flex
@@ -63,9 +64,9 @@ export default function Home() {
           <div className="space-y-6">
             <ProjectCard
               title="PersonAI (Satalia)"
-              description="AI-driven platform for creating personas and simulating focus group conversations."
+              description="AI-driven persona platform enabling users to simulate focus groups and interact with generated personas through chat."
               href="/projects/personai"
-              contributions="Sole FE • Redux architecture • Complex workflows"
+              contributions="Sole FE • Redux workflows • AI product UX"
             />
             <ProjectCard
               title="Marston’s Order & Pay"
