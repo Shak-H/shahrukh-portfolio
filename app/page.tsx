@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import ProjectCard from "@/components/ProjectCard";
+import Link from "next/dist/client/link";
 import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
 
 export default function Home() {
@@ -10,17 +11,23 @@ export default function Home() {
       <div className="max-w-4xl mx-auto px-4">
         {/* Hero */}
         <section className="mb-16">
-          <h1 className="text-4xl font-bold mb-4">
-            Frontend Engineer building scalable, production-ready React
-            applications
-          </h1>
-
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl">
-            I design and build performant, user-focused web applications using
-            React, Next.js, and TypeScript. I’ve worked on AI-driven products,
-            workflow-heavy platforms, and customer-facing applications in
-            production environments.
+          <h1 className="text-4xl font-bold mb-4">Shahrukh Hughes</h1>
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mb-4">
+            Software engineer at iVendi.
           </p>
+
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mt-4">
+            I build web applications that make complex tasks easier, from
+            running AI-supported research to ordering food from your table. I
+            work with clients and product teams to turn ideas into products
+            people can use.
+          </p>
+
+          <div className="flex gap-4 mt-4">
+            <a href="#selected-work">See my work</a>
+            <Link href="/contact">Discuss a project</Link>
+          </div>
+
           <div
             className="mt-6 flex
           gap-4 sm:gap-6 items-center"
@@ -58,7 +65,7 @@ export default function Home() {
         </section>
 
         {/* Projects */}
-        <section className="mb-16">
+        <section id="selected-work" className="mb-16">
           <h2 className="text-2xl font-semibold mb-6">Selected Work</h2>
 
           <div className="space-y-6">
