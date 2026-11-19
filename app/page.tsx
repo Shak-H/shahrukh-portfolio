@@ -1,15 +1,19 @@
-import Navbar from "@/components/Navbar";
-import { PenaltyShootout } from "@/components/PenaltyShootout";
-import ProjectCard from "@/components/ProjectCard";
-import Link from "next/dist/client/link";
+import Link from "next/link";
 import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
+import Navbar from "@/components/Navbar";
+import PenaltyShootout from "@/components/PenaltyShootout";
+import ProjectCard from "@/components/ProjectCard";
 
 export default function Home() {
   return (
-    <>
+    <div className="relative isolate min-h-screen text-slate-100">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 -z-10 bg-slate-950 bg-[radial-gradient(ellipse_at_top_right,#142e41_0%,transparent_55%)]"
+      />
       <Navbar />
 
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="mx-auto max-w-4xl px-4">
         {/* Hero */}
         <section className="mb-16 grid items-center gap-8 rounded-2xl border border-slate-700 bg-slate-950 bg-[radial-gradient(ellipse_at_top_right,#164e63_0%,transparent_60%)] p-5 text-slate-100 sm:p-8 md:grid-cols-2 lg:gap-10">
           <div className="min-w-0">
@@ -91,7 +95,7 @@ export default function Home() {
         >
           <h2
             id="selected-work-heading"
-            className="mb-5 font-serif text-3xl font-semibold tracking-tight sm:text-4xl"
+            className="mb-5 font-serif text-3xl font-semibold tracking-tight text-[#f5f0e5] sm:text-4xl"
           >
             Selected work
           </h2>
@@ -115,17 +119,17 @@ export default function Home() {
         {/* About */}
         <section
           aria-labelledby="about-heading"
-          className="mb-16 grid gap-5 border-t border-slate-200 pt-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-8 dark:border-slate-700"
+          className="mb-16 grid gap-5 border-t border-slate-700 pt-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-8"
         >
           <div>
             <h2
               id="about-heading"
-              className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl"
+              className="font-serif text-3xl font-semibold tracking-tight text-[#f5f0e5] sm:text-4xl"
             >
               About me
             </h2>
 
-            <p className="mt-4 max-w-prose leading-relaxed text-slate-600 dark:text-slate-300">
+            <p className="mt-4 max-w-prose leading-relaxed text-slate-300">
               I’m a frontend software engineer at iVendi, where I help build
               tools dealerships use to put together vehicle finance packages.
               I’ve also built AI research tools and mobile ordering experiences.
@@ -134,12 +138,12 @@ export default function Home() {
 
           <Link
             href="/contact"
-            className="inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:border-cyan-600 hover:bg-cyan-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600 dark:border-slate-600 dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:bg-slate-800 dark:focus-visible:outline-cyan-300"
+            className="inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-md border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-100 transition-colors hover:border-cyan-300 hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
           >
             Get in touch <span aria-hidden="true">→</span>
           </Link>
         </section>
       </div>
-    </>
+    </div>
   );
 }

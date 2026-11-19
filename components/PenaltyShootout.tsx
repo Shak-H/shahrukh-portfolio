@@ -32,7 +32,7 @@ const primaryButtonClass = `min-h-11 rounded-md bg-cyan-300 px-4 font-semibold t
 
 const directionButtonClass = `min-h-11 rounded-md border border-slate-600 bg-slate-900 px-2 font-medium text-white enabled:hover:bg-slate-700 disabled:opacity-50 ${buttonFocusClass}`;
 
-export const PenaltyShootout = () => {
+const PenaltyShootout = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [shots, setShots] = useState<Shot[]>([]);
   const [isShowingShot, setIsShowingShot] = useState(false);
@@ -187,3 +187,5 @@ export const PenaltyShootout = () => {
     </div>
   );
 };
+
+export default PenaltyShootout;
