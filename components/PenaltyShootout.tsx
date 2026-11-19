@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import type { KeyboardEvent } from "react";
+
+import Button from "@/components/ui/Button";
 
 type Shot = {
   outcome: ShotResult;
@@ -17,6 +20,28 @@ function pickKeeperDirection() {
   return directions[index];
 }
 
+function handleDirectionKeyDown(
+  event: KeyboardEvent<HTMLButtonElement>,
+  index: number,
+) {
+  const { key } = event;
+
+  if (key !== "ArrowLeft" && key !== "ArrowRight" && key !== "ArrowUp") {
+    return;
+  }
+
+  event.preventDefault();
+
+  const nextIndex =
+    key === "ArrowUp"
+      ? directions.indexOf("Centre")
+      : (index + (key === "ArrowLeft" ? -1 : 1) + directions.length) %
+        directions.length;
+
+  const buttons = event.currentTarget.parentElement?.querySelectorAll("button");
+  buttons?.[nextIndex]?.focus();
+}
+
 const goalPositions: Record<Direction, string> = {
   Left: "35%",
   Centre: "50%",
@@ -25,20 +50,12 @@ const goalPositions: Record<Direction, string> = {
 
 type ShotResult = "goal" | "saved";
 
-const buttonFocusClass =
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500";
-
-const primaryButtonClass = `min-h-11 rounded-md bg-cyan-300 px-4 font-semibold text-slate-950 ${buttonFocusClass}`;
-
-const directionButtonClass = `min-h-11 rounded-md border border-slate-600 bg-slate-900 px-2 font-medium text-white enabled:hover:bg-slate-700 disabled:opacity-50 ${buttonFocusClass}`;
-
-const PenaltyShootout = () => {
+export default function PenaltyShootout() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [shots, setShots] = useState<Shot[]>([]);
   const [isShowingShot, setIsShowingShot] = useState(false);
   const lastShot = shots.at(-1);
   const result = lastShot?.outcome;
-  const goals = shots.filter((shot) => shot.outcome === "goal").length;
   const isRoundOver = shots.length >= 3;
   const displayedShot = isShowingShot ? lastShot : undefined;
   const keeperDirection = displayedShot?.keeperDirection ?? "Centre";
@@ -85,6 +102,7 @@ const PenaltyShootout = () => {
         <p className="w-fit rounded bg-black/10 px-3 py-1 text-sm font-semibold text-white">
           Penalty Shootout
         </p>
+
         {isPlaying && (
           <>
             <span
@@ -107,6 +125,7 @@ const PenaltyShootout = () => {
           </>
         )}
       </div>
+
       <ol aria-label="Shot results" className="mt-4 flex justify-center gap-2">
         {Array.from({ length: 3 }, (_, index) => {
           const outcome = shots[index]?.outcome;
@@ -132,60 +151,55 @@ const PenaltyShootout = () => {
           );
         })}
       </ol>
-      <div className="flex justify-center mt-4">
+
+      <div className="mt-4 flex justify-center">
         {isPlaying ? (
-          <div className="grid w-full max-w-xs grid-cols-3 gap-2">
-            {directions.map((direction, index) => (
-              <button
-                key={direction}
-                ref={index === 0 ? firstDirectionRef : undefined}
-                type="button"
-                className={directionButtonClass}
-                onClick={() => handleShot(direction)}
-                disabled={isRoundOver}
-                aria-disabled={isShowingShot}
-              >
-                {direction}
-              </button>
-            ))}
+          <div className="grid w-full max-w-xs gap-2">
+            <div className="grid grid-cols-3 gap-2">
+              {directions.map((direction, index) => (
+                <Button
+                  key={direction}
+                  ref={index === 0 ? firstDirectionRef : undefined}
+                  variant="secondary"
+                  size="compact"
+                  className="bg-slate-900 aria-disabled:cursor-not-allowed"
+                  onKeyDown={(event) => handleDirectionKeyDown(event, index)}
+                  onClick={() => handleShot(direction)}
+                  disabled={isRoundOver}
+                  aria-disabled={isRoundOver || isShowingShot}
+                >
+                  {direction}
+                </Button>
+              ))}
+            </div>
+
+            <p className="text-center text-xs leading-relaxed text-slate-300">
+              <kbd>←</kbd> / <kbd>→</kbd> to aim · <kbd>↑</kbd> for centre ·{" "}
+              <kbd>Enter</kbd> / <kbd>Space</kbd> to shoot
+            </p>
           </div>
         ) : (
-          <button
-            type="button"
-            className={primaryButtonClass}
-            onClick={() => {
-              setIsPlaying(true);
-            }}
-          >
-            Take a shot
-          </button>
+          <Button onClick={() => setIsPlaying(true)}>Take a shot</Button>
         )}
       </div>
 
       <p role="status" className="text-center mt-4 text-lg font-semibold">
-        {result &&
-          `${result === "goal" ? "Goal!" : "Saved!"} ${goals} ${
-            goals === 1 ? "goal" : "goals"
-          } from ${shots.length} ${shots.length === 1 ? "shot" : "shots"}.`}
+        {result && `${result === "goal" ? "Goal!" : "Saved!"}`}
       </p>
 
       {isRoundOver && (
-        <div className="flex justify-center mt-4">
-          <button
-            type="button"
+        <div className="mt-4 flex justify-center">
+          <Button
             ref={playAgainRef}
-            className={primaryButtonClass}
             onClick={() => {
               setShots([]);
               setIsShowingShot(false);
             }}
           >
             Play Again
-          </button>
+          </Button>
         </div>
       )}
     </div>
   );
-};
-
-export default PenaltyShootout;
+}

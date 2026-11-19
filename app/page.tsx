@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
+import { portfolioProjects } from "./projects/portfolio-projects";
+import { buttonClassName } from "@/components/ui/Button";
 import Navbar from "@/components/Navbar";
 import PenaltyShootout from "@/components/PenaltyShootout";
 import ProjectCard from "@/components/ProjectCard";
@@ -11,7 +13,7 @@ export default function Home() {
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 -z-10 bg-slate-950 bg-[radial-gradient(ellipse_at_top_right,#142e41_0%,transparent_55%)]"
       />
-      <Navbar />
+      <Navbar variant="floodlit" />
 
       <div className="mx-auto max-w-4xl px-4">
         {/* Hero */}
@@ -33,17 +35,11 @@ export default function Home() {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3 [@media(max-width:425px)]:justify-center">
-              <a
-                href="#selected-work"
-                className="inline-flex min-h-11 items-center justify-center rounded-md bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-              >
+              <a href="#selected-work" className={buttonClassName("primary")}>
                 See my work
               </a>
 
-              <Link
-                href="/contact"
-                className="inline-flex min-h-11 items-center justify-center rounded-md border border-slate-500 bg-slate-950/30 px-4 py-2 text-sm font-semibold text-slate-100 transition-colors hover:border-cyan-300 hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-              >
+              <Link href="/contact" className={buttonClassName("secondary")}>
                 Discuss a project
               </Link>
             </div>
@@ -101,18 +97,9 @@ export default function Home() {
           </h2>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <ProjectCard
-              title="PersonAI (Satalia)"
-              description="An AI research platform that lets teams interview simulated personas and run virtual focus groups."
-              href="/projects/personai"
-              contributions="Frontend ownership · Workflow design"
-            />
-            <ProjectCard
-              title="Marston’s Order & Pay"
-              description="A mobile ordering experience that lets pub customers browse the menu, customise meals and pay from their table."
-              href="/projects/marstons"
-              contributions="Ordering flows · Forms · Analytics"
-            />
+            {portfolioProjects.map((project) => (
+              <ProjectCard key={project.href} {...project} />
+            ))}
           </div>
         </section>
 
@@ -138,7 +125,7 @@ export default function Home() {
 
           <Link
             href="/contact"
-            className="inline-flex min-h-11 w-fit items-center justify-center gap-2 rounded-md border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-100 transition-colors hover:border-cyan-300 hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+            className={`${buttonClassName("secondary")} w-fit`}
           >
             Get in touch <span aria-hidden="true">→</span>
           </Link>

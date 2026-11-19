@@ -7,12 +7,12 @@ type ProjectCardProps = {
   contributions?: string;
 };
 
-const ProjectCard = ({
+export default function ProjectCard({
   title,
   description,
   href,
   contributions,
-}: ProjectCardProps) => {
+}: ProjectCardProps) {
   return (
     <Link
       href={href}
@@ -37,6 +37,4 @@ const ProjectCard = ({
       )}
     </Link>
   );
-};
-
-export default ProjectCard;
+}
