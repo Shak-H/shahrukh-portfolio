@@ -73,10 +73,10 @@ export default function PenaltyShootout() {
     displayedShot?.outcome === "saved" && keeperDirection === "Centre";
 
   const keeperImage = isDiving
-    ? "bg-[url('/goalkeeper-dive.png')]"
+    ? "bg-[url('/goalkeeper-dive.webp')]"
     : isCentreSave
-      ? "bg-[url('/goalkeeper-catch.png')]"
-      : "bg-[url('/goalkeeper.png')]";
+      ? "bg-[url('/goalkeeper-catch.webp')]"
+      : "bg-[url('/goalkeeper.webp')]";
 
   const keeperSize = isDiving ? "h-[16%] w-[23%]" : "h-[17%] w-[14%]";
   const keeperLeft =
@@ -147,7 +147,7 @@ export default function PenaltyShootout() {
       {/* Pitch and bottom fade */}
       <div
         data-testid="shootout-pitch"
-        className="relative aspect-3/2 overflow-hidden rounded-xl border border-slate-700 bg-slate-900 bg-[url('/floodlit-pitch.png')] bg-cover bg-center text-white [@media(max-width:375px)]:mb-3"
+        className="relative aspect-3/2 overflow-hidden rounded-xl border border-slate-700 bg-slate-900 bg-[url('/floodlit-pitch.webp')] bg-cover bg-center text-white [@media(max-width:375px)]:mb-3"
       >
         <div
           aria-hidden="true"
@@ -166,7 +166,7 @@ export default function PenaltyShootout() {
         {/* Ball */}
         <span
           aria-hidden="true"
-          className={`pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2 bg-[url('/football.png')] bg-contain bg-center bg-no-repeat drop-shadow-md [--ball-clearance:4.75rem] motion-safe:transition-[left,top] motion-safe:duration-200 motion-safe:ease-out sm:size-6 sm:[--ball-clearance:5.75rem] [@media(max-width:530px)]:[--ball-clearance:0rem] ${
+          className={`pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2 bg-[url('/football.webp')] bg-contain bg-center bg-no-repeat drop-shadow-md [--ball-clearance:4.75rem] motion-safe:transition-[left,top] motion-safe:duration-200 motion-safe:ease-out sm:size-6 sm:[--ball-clearance:5.75rem] [@media(max-width:530px)]:[--ball-clearance:0rem] ${
             isCentreSave ? "invisible" : ""
           }`}
           style={

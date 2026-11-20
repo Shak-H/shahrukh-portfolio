@@ -46,7 +46,18 @@ export default function Home() {
             </div>
           </div>
 
-          <PenaltyShootout />
+          <div className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="font-serif text-xl font-semibold text-[#f5f0e5] sm:text-2xl">
+                Penalty shootout
+              </h2>
+              <p className="text-sm leading-relaxed text-slate-300">
+                Three shots. How many can you score?
+              </p>
+            </div>
+
+            <PenaltyShootout />
+          </div>
         </section>
 
         {/* Selected work */}

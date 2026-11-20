@@ -1,5 +1,3 @@
-"use client";
-
 import { FiMail } from "react-icons/fi";
 
 import { buttonClassName } from "@/components/ui/Button";

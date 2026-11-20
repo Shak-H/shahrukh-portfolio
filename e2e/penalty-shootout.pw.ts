@@ -57,3 +57,28 @@ for (const { width, placement } of cases) {
     }
   });
 }
+
+test("brings the focused shot button into view when starting with the keyboard", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 800, height: 360 });
+  await page.goto("/");
+
+  const start = page.getByRole("button", {
+    name: "Play shootout",
+    exact: true,
+  });
+
+  await start.evaluate((button) => {
+    button.scrollIntoView({ block: "end" });
+    button.focus({ preventScroll: true });
+  });
+
+  await expect(start).toBeFocused();
+  await expect(start).toBeInViewport({ ratio: 0.99 });
+  await page.keyboard.press("Enter");
+
+  const left = page.getByRole("button", { name: "Left", exact: true });
+  await expect(left).toBeFocused();
+  await expect(left).toBeInViewport({ ratio: 0.99 });
+});
