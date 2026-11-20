@@ -120,7 +120,7 @@ export default function PenaltyShootout() {
       return;
     }
 
-    firstDirectionRef.current?.focus({ preventScroll: true });
+    firstDirectionRef.current?.focus();
   }, [isPlaying, isReplayReady]);
 
   useEffect(() => {
