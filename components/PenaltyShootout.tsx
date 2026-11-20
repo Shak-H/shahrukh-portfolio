@@ -1,9 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
-
 import Button from "@/components/ui/Button";
+
+const directions = ["Left", "Centre", "Right"] as const;
+const maxShots = 3;
+
+type Direction = (typeof directions)[number];
+type ShotResult = "goal" | "saved";
 
 type Shot = {
   outcome: ShotResult;
@@ -11,9 +16,11 @@ type Shot = {
   keeperDirection: Direction;
 };
 
-const directions = ["Left", "Centre", "Right"] as const;
-
-type Direction = (typeof directions)[number];
+const goalPositions: Record<Direction, string> = {
+  Left: "27%",
+  Centre: "50%",
+  Right: "73%",
+};
 
 function pickKeeperDirection() {
   const index = Math.floor(Math.random() * directions.length);
@@ -39,122 +46,180 @@ function handleDirectionKeyDown(
         directions.length;
 
   const buttons = event.currentTarget.parentElement?.querySelectorAll("button");
-  buttons?.[nextIndex]?.focus();
+  buttons?.[nextIndex]?.focus({ preventScroll: true });
 }
-
-const goalPositions: Record<Direction, string> = {
-  Left: "35%",
-  Centre: "50%",
-  Right: "65%",
-};
-
-type ShotResult = "goal" | "saved";
 
 export default function PenaltyShootout() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [shots, setShots] = useState<Shot[]>([]);
   const [isShowingShot, setIsShowingShot] = useState(false);
+
   const lastShot = shots.at(-1);
   const result = lastShot?.outcome;
-  const isRoundOver = shots.length >= 3;
+  const isRoundOver = shots.length >= maxShots;
+  const isReplayReady = isRoundOver && !isShowingShot;
   const displayedShot = isShowingShot ? lastShot : undefined;
+  let shotBallTop = "60%";
+
+  if (displayedShot?.outcome === "saved") {
+    shotBallTop = "54%"; // Bring side saves up to glove height.
+  } else if (displayedShot?.shotDirection === "Centre") {
+    shotBallTop = "50%"; // Put a centre goal higher in the net.
+  }
   const keeperDirection = displayedShot?.keeperDirection ?? "Centre";
+  const isDiving = keeperDirection !== "Centre";
+  const isCentreSave =
+    displayedShot?.outcome === "saved" && keeperDirection === "Centre";
+
+  const keeperImage = isDiving
+    ? "bg-[url('/goalkeeper-dive.png')]"
+    : isCentreSave
+      ? "bg-[url('/goalkeeper-catch.png')]"
+      : "bg-[url('/goalkeeper.png')]";
+
+  const keeperSize = isDiving ? "h-[16%] w-[23%]" : "h-[17%] w-[14%]";
+  const keeperLeft =
+    keeperDirection === "Left"
+      ? "37%"
+      : keeperDirection === "Right"
+        ? "63%"
+        : "50%";
+
   const firstDirectionRef = useRef<HTMLButtonElement>(null);
   const playAgainRef = useRef<HTMLButtonElement>(null);
 
-  const handleShot = (direction: Direction) => {
+  function handleShot(direction: Direction) {
     if (isShowingShot || isRoundOver) return;
 
     const keeperDirection = pickKeeperDirection();
     const outcome: ShotResult =
       direction === keeperDirection ? "saved" : "goal";
 
-    setShots((prevShots) => [
-      ...prevShots,
+    setShots((previousShots) => [
+      ...previousShots,
       { outcome, keeperDirection, shotDirection: direction },
     ]);
     setIsShowingShot(true);
-  };
+  }
+
+  function handleReplay() {
+    setShots([]);
+    setIsShowingShot(false);
+  }
 
   useEffect(() => {
     if (!isPlaying) return;
 
-    if (isRoundOver) {
-      playAgainRef.current?.focus();
-    } else {
-      firstDirectionRef.current?.focus();
-    }
-  }, [isPlaying, isRoundOver]);
+    const nextButton = isReplayReady ? playAgainRef : firstDirectionRef;
+    nextButton.current?.focus({ preventScroll: true });
+  }, [isPlaying, isReplayReady]);
 
   useEffect(() => {
     if (!isShowingShot) return;
 
-    const timeoutId = window.setTimeout(() => {
-      setIsShowingShot(false);
-    }, 1200);
+    const timeoutId = window.setTimeout(
+      () => {
+        setIsShowingShot(false);
+      },
+      isRoundOver ? 1600 : 1200,
+    );
 
     return () => window.clearTimeout(timeoutId);
-  }, [isShowingShot]);
+  }, [isShowingShot, isRoundOver]);
 
   return (
     <div>
-      <div className="bg-[url('/floodlit-pitch.png')] aspect-3/2 relative rounded-xl bg-cover bg-center bg-slate-900 p-4 text-white">
-        <p className="w-fit rounded bg-black/10 px-3 py-1 text-sm font-semibold text-white">
-          Penalty Shootout
-        </p>
+      {/* Pitch and bottom fade */}
+      <div className="relative aspect-3/2 overflow-hidden rounded-xl border border-slate-700 bg-slate-900 bg-[url('/floodlit-pitch.png')] bg-cover bg-center text-white">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-slate-950/85 to-transparent"
+        />
 
+        {/* Goalkeeper */}
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none absolute top-[64%] -translate-x-1/2 -translate-y-full bg-contain bg-bottom bg-no-repeat drop-shadow-lg motion-safe:transition-[left] motion-safe:duration-200 motion-safe:ease-out ${keeperImage} ${keeperSize} ${
+            keeperDirection === "Left" ? "-scale-x-100" : ""
+          }`}
+          style={{ left: keeperLeft }}
+        />
+
+        {/* Ball */}
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none absolute size-4 -translate-x-1/2 -translate-y-1/2 bg-[url('/football.png')] bg-contain bg-center bg-no-repeat drop-shadow-md [--ball-clearance:4.75rem] motion-safe:transition-[left,top] motion-safe:duration-200 motion-safe:ease-out sm:size-6 sm:[--ball-clearance:5.75rem] ${
+            isCentreSave ? "invisible" : ""
+          }`}
+          style={
+            displayedShot
+              ? {
+                  left: goalPositions[displayedShot.shotDirection],
+                  top: shotBallTop,
+                }
+              : {
+                  left: "50%",
+                  top: isPlaying
+                    ? "74%"
+                    : "min(74%, calc(100% - var(--ball-clearance)))",
+                }
+          }
+        />
+
+        {/* Start button */}
+        {!isPlaying && (
+          <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center sm:bottom-6">
+            <Button onClick={() => setIsPlaying(true)}>Take a shot</Button>
+          </div>
+        )}
+
+        {/* Scoreboard */}
         {isPlaying && (
-          <>
-            <span
-              aria-hidden="true"
-              className="absolute size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white motion-safe:transition-[left, top] motion-safe:duration-200 motion-safe:ease-out"
-              style={
-                displayedShot
-                  ? {
-                      left: goalPositions[displayedShot.shotDirection],
-                      top: "60%",
-                    }
-                  : { left: "50%", top: "76%" }
-              }
-            />
-            <span
-              aria-hidden="true"
-              className="absolute top-[55%] size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-300 motion-safe:transition-[left] motion-safe:duration-200 motion-safe:ease-out"
-              style={{ left: goalPositions[keeperDirection] }}
-            />
-          </>
+          <ol
+            aria-label="Shot results"
+            className="absolute top-3 right-3 z-10 flex gap-1.5 rounded-lg border border-slate-600 bg-slate-950/90 p-1.5 sm:top-4 sm:right-4"
+          >
+            {Array.from({ length: maxShots }, (_, index) => {
+              const outcome = shots[index]?.outcome;
+
+              const indicator = outcome
+                ? outcome === "goal"
+                  ? { symbol: "✓", label: "Goal", colour: "bg-green-400" }
+                  : { symbol: "×", label: "Saved", colour: "bg-red-400" }
+                : {
+                    symbol: "–",
+                    label: "Not taken yet",
+                    colour: "bg-slate-300",
+                  };
+
+              return (
+                <li key={index}>
+                  <span
+                    aria-hidden="true"
+                    className={`grid size-6 place-items-center rounded-full text-sm leading-none font-bold text-slate-950 ${indicator.colour}`}
+                  >
+                    {indicator.symbol}
+                  </span>
+                  <span className="sr-only">
+                    Shot {index + 1}: {indicator.label}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
         )}
       </div>
 
-      <ol aria-label="Shot results" className="mt-4 flex justify-center gap-2">
-        {Array.from({ length: 3 }, (_, index) => {
-          const outcome = shots[index]?.outcome;
-
-          const indicator = outcome
-            ? outcome === "goal"
-              ? { symbol: "✓", label: "Goal", colour: "bg-green-500" }
-              : { symbol: "×", label: "Saved", colour: "bg-red-500" }
-            : { symbol: "–", label: "Not taken yet", colour: "bg-gray-300" };
-
-          return (
-            <li key={index}>
-              <span
-                aria-hidden="true"
-                className={`inline-flex size-6 items-center justify-center rounded-full font-bold text-slate-950 ${indicator.colour}`}
-              >
-                {indicator.symbol}
-              </span>
-              <span className="sr-only">
-                Shot {index + 1}: {indicator.label}
-              </span>
-            </li>
-          );
-        })}
-      </ol>
-
-      <div className="mt-4 flex justify-center">
-        {isPlaying ? (
-          <div className="grid w-full max-w-xs gap-2">
+      {/* Shot controls and replay share the same space */}
+      {isPlaying && (
+        <div className="mx-auto mt-4 grid w-full max-w-xs gap-2">
+          {isReplayReady ? (
+            <div className="flex justify-center">
+              <Button ref={playAgainRef} onClick={handleReplay}>
+                Play Again
+              </Button>
+            </div>
+          ) : (
             <div className="grid grid-cols-3 gap-2">
               {directions.map((direction, index) => (
                 <Button
@@ -165,41 +230,36 @@ export default function PenaltyShootout() {
                   className="bg-slate-900 aria-disabled:cursor-not-allowed"
                   onKeyDown={(event) => handleDirectionKeyDown(event, index)}
                   onClick={() => handleShot(direction)}
-                  disabled={isRoundOver}
-                  aria-disabled={isRoundOver || isShowingShot}
+                  aria-disabled={isShowingShot}
                 >
                   {direction}
                 </Button>
               ))}
             </div>
+          )}
 
+          {/* Keyboard instructions */}
+          {!isRoundOver && (
             <p className="text-center text-xs leading-relaxed text-slate-300">
               <kbd>←</kbd> / <kbd>→</kbd> to aim · <kbd>↑</kbd> for centre ·{" "}
               <kbd>Enter</kbd> / <kbd>Space</kbd> to shoot
             </p>
-          </div>
-        ) : (
-          <Button onClick={() => setIsPlaying(true)}>Take a shot</Button>
-        )}
-      </div>
-
-      <p role="status" className="text-center mt-4 text-lg font-semibold">
-        {result && `${result === "goal" ? "Goal!" : "Saved!"}`}
-      </p>
-
-      {isRoundOver && (
-        <div className="mt-4 flex justify-center">
-          <Button
-            ref={playAgainRef}
-            onClick={() => {
-              setShots([]);
-              setIsShowingShot(false);
-            }}
-          >
-            Play Again
-          </Button>
+          )}
         </div>
       )}
+
+      {/* Keep the live region mounted so each shot can be announced */}
+      <p role="status" className="text-center text-lg font-semibold">
+        {result && !isReplayReady && (
+          <span className="mt-3 block">
+            {result === "goal" ? "Goal!" : "Saved!"}
+            <span className="sr-only">
+              {" "}
+              Shot {shots.length} of {maxShots}.
+            </span>
+          </span>
+        )}
+      </p>
     </div>
   );
 }

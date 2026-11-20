@@ -1,40 +1,41 @@
 import Link from "next/link";
-import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
-import { portfolioProjects } from "./projects/portfolio-projects";
-import { buttonClassName } from "@/components/ui/Button";
-import Navbar from "@/components/Navbar";
+import { FiDownload, FiGithub, FiLinkedin } from "react-icons/fi";
+
+import FloodlitLayout from "@/components/FloodlitLayout";
 import PenaltyShootout from "@/components/PenaltyShootout";
-import ProjectCard from "@/components/ProjectCard";
+import { buttonClassName } from "@/components/ui/Button";
+import { portfolioProjects } from "./projects/portfolio-projects";
+
+const socialLinkClass =
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-sm px-2 text-sm font-medium text-slate-300 transition-colors hover:text-cyan-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300";
 
 export default function Home() {
   return (
-    <div className="relative isolate min-h-screen text-slate-100">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 -z-10 bg-slate-950 bg-[radial-gradient(ellipse_at_top_right,#142e41_0%,transparent_55%)]"
-      />
-      <Navbar variant="floodlit" />
-
+    <FloodlitLayout>
       <div className="mx-auto max-w-4xl px-4">
-        {/* Hero */}
-        <section className="mb-16 grid items-center gap-8 rounded-2xl border border-slate-700 bg-slate-950 bg-[radial-gradient(ellipse_at_top_right,#164e63_0%,transparent_60%)] p-5 text-slate-100 sm:p-8 md:grid-cols-2 lg:gap-10">
-          <div className="min-w-0">
-            <h1 className="font-serif text-4xl leading-tight font-semibold tracking-tight sm:text-5xl">
+        {/* Homepage introduction and penalty shootout */}
+        <section
+          aria-labelledby="home-heading"
+          className="mb-8 grid gap-6 sm:mb-10 sm:gap-8"
+        >
+          <div className="grid max-w-2xl gap-3 sm:gap-4">
+            <h1
+              id="home-heading"
+              className="font-serif text-[clamp(2.75rem,7vw,5rem)] leading-[0.98] font-semibold tracking-tight text-[#f5f0e5]"
+            >
               Shahrukh Hughes
             </h1>
 
-            <p className="mt-3 text-sm font-semibold text-cyan-300 sm:text-base">
-              Frontend Software Engineer at iVendi.
+            <p className="font-serif text-lg text-[#e6dfd2] italic sm:text-2xl">
+              Software engineer at iVendi
             </p>
 
-            <p className="mt-4 max-w-prose leading-relaxed text-slate-300">
-              I build web applications that make complex tasks easier, from
-              running AI-supported research to ordering food from your table. I
-              work with clients and product teams to turn ideas into products
-              people can use.
+            <p className="max-w-[48ch] text-sm leading-relaxed text-slate-300 sm:text-base">
+              I build web products that make complex tasks easier, from ordering
+              at your table to getting a vehicle finance quote.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3 [@media(max-width:425px)]:justify-center">
+            <div className="mt-1 flex flex-wrap gap-3 [@media(max-width:425px)]:justify-center">
               <a href="#selected-work" className={buttonClassName("primary")}>
                 See my work
               </a>
@@ -43,47 +44,12 @@ export default function Home() {
                 Discuss a project
               </Link>
             </div>
-
-            <div className="mt-6 grid grid-cols-3 gap-2 border-t border-slate-700 pt-3 text-sm text-slate-300">
-              <a
-                href="https://github.com/Shak-H"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-md border border-slate-700 px-2 font-medium transition-colors hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-              >
-                <FiGithub size={16} className="shrink-0" aria-hidden="true" />
-                <span className="sr-only min-[400px]:not-sr-only">GitHub</span>
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>
-
-              <a
-                href="https://linkedin.com/in/shahrukh-hughes"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-md border border-slate-700 px-2 font-medium transition-colors hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-              >
-                <FiLinkedin size={16} className="shrink-0" aria-hidden="true" />
-                <span className="sr-only min-[400px]:not-sr-only">
-                  LinkedIn
-                </span>
-                <span className="sr-only"> (opens in new tab)</span>
-              </a>
-
-              <a
-                href="/Shahrukh-Hughes-CV.pdf"
-                download
-                aria-label="Download CV (PDF)"
-                className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-md border border-slate-700 px-2 font-medium transition-colors hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
-              >
-                <FiDownload size={16} className="shrink-0" aria-hidden="true" />
-                CV
-              </a>
-            </div>
           </div>
 
           <PenaltyShootout />
         </section>
 
+        {/* Selected work */}
         <section
           id="selected-work"
           aria-labelledby="selected-work-heading"
@@ -91,24 +57,43 @@ export default function Home() {
         >
           <h2
             id="selected-work-heading"
-            className="mb-5 font-serif text-3xl font-semibold tracking-tight text-[#f5f0e5] sm:text-4xl"
+            className="font-serif text-3xl font-semibold tracking-tight text-[#f5f0e5] sm:text-4xl"
           >
             Selected work
           </h2>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {portfolioProjects.map((project) => (
-              <ProjectCard key={project.href} {...project} />
+          <ul className="mt-4 divide-y divide-slate-700 border-b border-slate-700">
+            {portfolioProjects.map(({ title, description, href }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-sm px-2 py-4 transition-colors hover:bg-slate-900/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:px-3 sm:py-5"
+                >
+                  <div className="grid gap-1.5">
+                    <h3 className="font-serif text-xl font-semibold text-[#f5f0e5] group-hover:text-cyan-200 sm:text-2xl">
+                      {title}
+                    </h3>
+
+                    <p className="max-w-prose text-sm leading-relaxed text-slate-300">
+                      {description}
+                    </p>
+                  </div>
+
+                  <span aria-hidden="true" className="text-xl text-cyan-300">
+                    →
+                  </span>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
-        {/* About */}
+        {/* About and profile actions */}
         <section
           aria-labelledby="about-heading"
-          className="mb-16 grid gap-5 border-t border-slate-700 pt-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-8"
+          className="mb-10 grid gap-5 sm:mb-12 sm:gap-6"
         >
-          <div>
+          <div className="grid gap-4">
             <h2
               id="about-heading"
               className="font-serif text-3xl font-semibold tracking-tight text-[#f5f0e5] sm:text-4xl"
@@ -116,21 +101,55 @@ export default function Home() {
               About me
             </h2>
 
-            <p className="mt-4 max-w-prose leading-relaxed text-slate-300">
+            <p className="max-w-prose leading-relaxed text-slate-300">
               I’m a frontend software engineer at iVendi, where I help build
               tools dealerships use to put together vehicle finance packages.
               I’ve also built AI research tools and mobile ordering experiences.
             </p>
           </div>
 
-          <Link
-            href="/contact"
-            className={`${buttonClassName("secondary")} w-fit`}
-          >
-            Get in touch <span aria-hidden="true">→</span>
-          </Link>
+          <div className="flex flex-wrap gap-3 [@media(max-width:425px)]:justify-center">
+            <Link href="/contact" className={buttonClassName("secondary")}>
+              Get in touch <span aria-hidden="true">→</span>
+            </Link>
+
+            <a
+              href="/Shahrukh-Hughes-CV.pdf"
+              download
+              aria-label="Download CV (PDF)"
+              className={buttonClassName("secondary")}
+            >
+              <FiDownload size={16} aria-hidden="true" />
+              Download CV
+            </a>
+          </div>
         </section>
+
+        {/* Social links */}
+        <footer className="flex flex-wrap justify-center gap-3 border-t border-slate-700 pt-3 pb-8 sm:justify-start">
+          <a
+            href="https://github.com/Shak-H"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={socialLinkClass}
+          >
+            <FiGithub size={16} aria-hidden="true" />
+            GitHub
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/shahrukh-hughes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={socialLinkClass}
+          >
+            <FiLinkedin size={16} aria-hidden="true" />
+            LinkedIn
+            <span className="sr-only"> (opens in new tab)</span>
+          </a>
+        </footer>
       </div>
-    </div>
+    </FloodlitLayout>
   );
 }
