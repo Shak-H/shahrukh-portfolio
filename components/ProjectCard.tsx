@@ -1,3 +1,4 @@
+import { useId } from "react";
 import Link from "next/link";
 
 type ProjectCardProps = {
@@ -13,18 +14,23 @@ export default function ProjectCard({
   href,
   contributions,
 }: ProjectCardProps) {
+  const titleId = useId();
+
   return (
     <Link
       href={href}
+      aria-labelledby={titleId}
       className="flex h-full flex-col rounded-2xl border border-slate-700 bg-slate-900 p-5 text-slate-100 transition-colors hover:border-cyan-300 hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:p-6"
     >
       <div className="flex items-start justify-between gap-3">
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h2 id={titleId} className="text-lg font-semibold">
+          {title}
+        </h2>
         <span
           aria-hidden="true"
           className="shrink-0 text-xl leading-none text-cyan-300"
         >
-          ↗
+          →
         </span>
       </div>
 

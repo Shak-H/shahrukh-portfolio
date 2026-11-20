@@ -2,29 +2,26 @@ import type { Metadata } from "next";
 import CaseStudyLayout from "@/components/CaseStudyLayout";
 
 export const metadata: Metadata = {
-  title: "Marston's Order & Pay",
+  title: "Marston’s Order & Pay",
   description:
-    "Case study: building a mobile-first ordering platform with Next.js for real-world pub environments.",
+    "How I helped build Marston’s mobile ordering experience, from menu browsing and item customisation to the basket and checkout.",
 };
 
 export default function Marstons() {
   return (
     <CaseStudyLayout
-      title="Marston’s – Order & Pay Platform"
-      summary="A mobile-first web application enabling customers to browse menus,
-        customise items, and place orders directly from their table. Built with
-        Next.js and TypeScript, the platform supports real-world ordering
-        scenarios in high-traffic pub environments."
+      title="Marston’s Order & Pay"
+      summary="Marston’s Order & Pay lets customers browse the menu, customise items and order from their table. I helped build the mobile ordering experience and owned the implementation of analytics across key interactions."
       accent="amber"
     >
       {/* Context */}
       <section className="grid gap-3">
         <h2>Context</h2>
         <p>
-          Developed for Marston’s as part of a small frontend team, this was a
-          production application built and iterated on over an extended period.
-          I worked alongside a senior frontend engineer, contributing to feature
-          development across the core ordering journey.
+          The platform was built for customers ordering on their phones in
+          Marston’s pubs. I worked in a two-person frontend team alongside a
+          senior engineer, collaborating with product and backend teams as we
+          developed and iterated on the ordering journey.
         </p>
       </section>
 
@@ -33,92 +30,63 @@ export default function Marstons() {
         <h2>My Role</h2>
         <ul className="grid list-outside list-disc gap-1 pl-5">
           <li>
-            Frontend engineer in a two-person team, collaborating closely with a
-            senior engineer
+            Built features for menu browsing, item customisation and the basket
           </li>
           <li>
-            Delivered features across the core ordering journey, including menu
-            browsing, product customisation, and basket flows
+            Implemented dynamic form behaviour and validation for item options
           </li>
           <li>
-            Owned analytics implementation using Google Tag Manager across key
-            user interactions
+            Owned analytics implementation for key interactions using Google Tag
+            Manager
           </li>
           <li>
-            Implemented complex form validation and UI logic using
-            react-hook-form and Yup
-          </li>
-          <li>
-            Worked within an established architecture, contributing to component
-            structure and maintainable styling using CSS Modules
-          </li>
-          <li>
-            Collaborated closely with backend and product teams to deliver
-            features end-to-end
+            Contributed to component structure and styling with CSS Modules
           </li>
         </ul>
       </section>
 
-      {/* Tech */}
+      {/* Tech stack */}
       <section className="grid gap-3">
         <h2>Tech Stack</h2>
         <p>
-          Next.js, TypeScript, React, Context API, react-hook-form, REST APIs
+          Next.js, React, TypeScript, Context API, React Hook Form, Yup, REST
+          APIs and Google Tag Manager
         </p>
       </section>
 
-      {/* Features */}
+      {/* Key features */}
       <section className="grid gap-3">
         <h2>Key Features</h2>
         <ul className="grid list-outside list-disc gap-1 pl-5">
           <li>Menu browsing with dynamic availability and filtering</li>
-          <li>Product customisation with complex form validation</li>
-          <li>Basket management and checkout flow</li>
-          <li>Search functionality with debounced input</li>
-          <li>
-            Analytics tracking across key user interactions using Google Tag
-            Manager
-          </li>
+          <li>Menu search that waits briefly for customers to finish typing</li>
+          <li>Item customisation with validation for different options</li>
+          <li>Basket management and checkout</li>
         </ul>
       </section>
 
-      {/* Challenges */}
+      {/* Engineering decisions */}
       <section className="grid gap-4">
         <h2>Challenges &amp; Decisions</h2>
 
         <div className="grid gap-5">
           <div className="grid gap-2">
-            <h3>Managing a multi-step ordering flow</h3>
+            <h3>Keeping orders consistent across screens</h3>
             <p>
-              The ordering journey involved multiple steps, including menu
-              browsing, item customisation, basket management, and checkout. I
-              worked on ensuring data remained consistent across these steps
-              while keeping the experience intuitive for users on mobile
-              devices.
-            </p>
-            <p>
-              This required careful handling of shared state across components
-              to avoid inconsistencies during navigation and user interaction.
+              A customer could move from the menu to item customisation, then
+              review the basket and continue to checkout. I worked with shared
+              state across those screens so the basket reflected the choices
+              customers made earlier in the journey.
             </p>
           </div>
 
           <div className="grid gap-2">
-            <h3>Handling complex form interactions</h3>
+            <h3>Validating item choices on mobile</h3>
             <p>
-              Product customisation required dynamic forms with validation
-              rules. Using react-hook-form and schema validation, I helped
-              ensure user inputs were handled reliably while keeping the UI
-              responsive.
-            </p>
-          </div>
-
-          <div className="grid gap-2">
-            <h3>Performance and user experience</h3>
-            <p>
-              Given the mobile-first nature of the platform, performance and
-              usability were key considerations. I worked within established
-              patterns to ensure components remained efficient and responsive,
-              particularly in form-heavy and basket-related flows.
+              Different menu items had different options and rules. I used React
+              Hook Form and Yup to handle dynamic fields and validate choices
+              before adding the item to the basket. That gave customers a chance
+              to correct a selection while they were still on the item screen.
             </p>
           </div>
         </div>
@@ -128,10 +96,11 @@ export default function Marstons() {
       <section className="grid gap-3">
         <h2>Impact</h2>
         <p>
-          Delivered a production-ready ordering platform used in live
-          environments, supporting real customer interactions. The application
-          provided a streamlined ordering experience while enabling ongoing
-          feature development through a maintainable and scalable frontend.
+          The platform went live in Marston’s pubs, where customers could
+          browse, customise and order from their tables. My contributions
+          supported the menu-to-basket journey, and the analytics I implemented
+          gave the team visibility into key interactions once the platform was
+          in use.
         </p>
       </section>
     </CaseStudyLayout>

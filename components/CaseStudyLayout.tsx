@@ -48,7 +48,7 @@ export default function CaseStudyLayout({
           </p>
         </header>
 
-        <div className="mx-auto mt-8 grid max-w-2xl gap-8 leading-relaxed text-slate-300 sm:mt-10 sm:gap-10 [&_a]:text-cyan-300 [&_a]:underline [&_a]:underline-offset-4 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#f5f0e5] [&_h3]:font-medium [&_h3]:text-slate-100">
+        <div className="mx-auto mt-8 grid max-w-prose gap-8 leading-relaxed text-slate-300 sm:mt-10 sm:gap-10 [&_a]:rounded-sm [&_a]:text-cyan-300 [&_a]:underline [&_a]:underline-offset-4 [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-2 [&_a:focus-visible]:outline-cyan-300 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#f5f0e5] [&_h3]:font-medium [&_h3]:text-slate-100">
           {children}
         </div>
       </article>

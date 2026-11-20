@@ -2,19 +2,16 @@
 
 import { FiMail } from "react-icons/fi";
 
-import Button from "@/components/ui/Button";
+import { buttonClassName } from "@/components/ui/Button";
 
 export default function EmailLink() {
-  const handleClick = () => {
-    const user = "shahrukh.hughes";
-    const domain = "gmail.com";
-    window.location.href = `mailto:${user}@${domain}`;
-  };
-
   return (
-    <Button onClick={handleClick}>
+    <a
+      href="mailto:shahrukh.hughes@gmail.com"
+      className={buttonClassName("primary")}
+    >
       <FiMail size={16} aria-hidden="true" />
       Email
-    </Button>
+    </a>
   );
 }

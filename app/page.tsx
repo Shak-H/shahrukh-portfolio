@@ -101,16 +101,33 @@ export default function Home() {
               About me
             </h2>
 
-            <p className="max-w-prose leading-relaxed text-slate-300">
-              I’m a frontend software engineer at iVendi, where I help build
-              tools dealerships use to put together vehicle finance packages.
-              I’ve also built AI research tools and mobile ordering experiences.
-            </p>
+            <div className="grid max-w-prose gap-4 leading-relaxed text-slate-300">
+              <p>
+                At iVendi, I build tools that help dealerships put together
+                vehicle finance packages. I like finding ways to make everyday
+                tasks easier for the people who use our products. When I worked
+                on dealer search, I fixed how it responds as people type,
+                resolved bugs and made results easier to find and filter.
+              </p>
+
+              <p>
+                I also put together a plan for tackling technical debt and
+                proposed where the team could start. The team has since taken on
+                more of that work. I’m proud to have helped make the case for
+                it, because a codebase that’s easier to change makes it easier
+                to improve the product over time.
+              </p>
+
+              <p>
+                Outside work, I play five-a-side and coach junior football.
+                That’s what inspired the penalty shootout on this site.
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-3 [@media(max-width:425px)]:justify-center">
             <Link href="/contact" className={buttonClassName("secondary")}>
-              Get in touch <span aria-hidden="true">→</span>
+              Discuss a project <span aria-hidden="true">→</span>
             </Link>
 
             <a

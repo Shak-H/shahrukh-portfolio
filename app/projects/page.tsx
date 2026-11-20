@@ -6,7 +6,7 @@ import { portfolioProjects } from "./portfolio-projects";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Selected frontend projects including AI platforms and mobile-first ordering applications.",
+    "Explore two frontend case studies: PersonAI’s simulated research workflows and Marston’s mobile Order & Pay experience.",
 };
 
 export default function Projects() {
@@ -17,11 +17,13 @@ export default function Projects() {
           Projects
         </h1>
 
-        <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2">
+        <ul className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2">
           {portfolioProjects.map((project) => (
-            <ProjectCard key={project.href} {...project} />
+            <li key={project.href}>
+              <ProjectCard {...project} />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </FloodlitLayout>
   );

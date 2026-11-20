@@ -31,7 +31,7 @@ export default function Contact() {
             </p>
           </div>
 
-          <div className="grid w-full max-w-64 grid-cols-2 gap-3 justify-self-start [@media(max-width:425px)]:justify-self-center">
+          <div className="grid w-full max-w-64 grid-cols-1 gap-3 justify-self-start min-[375px]:grid-cols-2 [@media(max-width:425px)]:justify-self-center">
             <EmailLink />
 
             <a

@@ -4,9 +4,10 @@ const baseClass =
   "inline-flex min-h-11 items-center justify-center gap-2 rounded-md border py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300";
 
 const variantClasses = {
-  primary: "border-transparent bg-cyan-300 text-slate-950 hover:bg-cyan-200",
+  primary:
+    "border-transparent bg-cyan-300 text-slate-950 [&:not(:disabled):not([aria-disabled=true]):hover]:bg-cyan-200",
   secondary:
-    "border-slate-600 text-slate-100 hover:border-cyan-300 hover:bg-slate-800 hover:text-cyan-300",
+    "border-slate-600 text-slate-100 [&:not(:disabled):not([aria-disabled=true]):hover]:border-cyan-300 [&:not(:disabled):not([aria-disabled=true]):hover]:bg-slate-800 [&:not(:disabled):not([aria-disabled=true]):hover]:text-cyan-300",
 };
 
 const sizeClasses = {

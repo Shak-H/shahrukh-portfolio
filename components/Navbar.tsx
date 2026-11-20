@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type NavbarProps = {
   variant?: "default" | "floodlit";
@@ -11,6 +14,7 @@ const navLinks = [
 ];
 
 export default function Navbar({ variant = "default" }: NavbarProps) {
+  const pathname = usePathname();
   const isFloodlit = variant === "floodlit";
 
   const focusClass = isFloodlit
@@ -39,17 +43,36 @@ export default function Navbar({ variant = "default" }: NavbarProps) {
         Shahrukh Hughes
       </Link>
 
-      <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6">
-        {navLinks.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            className={`inline-flex min-h-11 items-center rounded-sm text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 ${focusClass} ${linkClass}`}
-          >
-            {label}
-          </Link>
-        ))}
-      </div>
+      <ul className="flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-4">
+        {navLinks.map(({ href, label }) => {
+          const isCurrentPage = pathname === href;
+          const isProjectSection =
+            href === "/projects" && pathname?.startsWith("/projects/");
+
+          const stateClass =
+            isCurrentPage || isProjectSection
+              ? isFloodlit
+                ? "text-cyan-300"
+                : "text-cyan-700 dark:text-cyan-300"
+              : linkClass;
+
+          return (
+            <li key={href}>
+              <Link
+                href={href}
+                aria-current={isCurrentPage ? "page" : undefined}
+                className={`inline-flex min-h-11 items-center rounded-sm px-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 ${focusClass} ${stateClass} ${
+                  isCurrentPage || isProjectSection
+                    ? "underline decoration-2 underline-offset-4"
+                    : ""
+                }`}
+              >
+                {label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </nav>
   );
 }
