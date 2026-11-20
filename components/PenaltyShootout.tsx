@@ -143,9 +143,12 @@ export default function PenaltyShootout() {
   }, [isShowingShot, isRoundOver]);
 
   return (
-    <div>
+    <>
       {/* Pitch and bottom fade */}
-      <div className="relative aspect-3/2 overflow-hidden rounded-xl border border-slate-700 bg-slate-900 bg-[url('/floodlit-pitch.png')] bg-cover bg-center text-white [@media(max-width:375px)]:mb-3">
+      <div
+        data-testid="shootout-pitch"
+        className="relative aspect-3/2 overflow-hidden rounded-xl border border-slate-700 bg-slate-900 bg-[url('/floodlit-pitch.png')] bg-cover bg-center text-white [@media(max-width:375px)]:mb-3"
+      >
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-slate-950/85 to-transparent"
@@ -289,6 +292,6 @@ export default function PenaltyShootout() {
           )
         )}
       </p>
-    </div>
+    </>
   );
 }
