@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteTitle = "Shahrukh Hughes | Frontend Software Engineer";
+const siteDescription =
+  "Frontend software engineer at iVendi, building web products that make complex tasks easier. Explore my work in vehicle finance, AI research and mobile ordering.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shahrukhhughes.co.uk"),
   title: {
-    default: "Shahrukh Hughes | Frontend Engineer",
+    default: siteTitle,
     template: "%s | Shahrukh Hughes",
   },
-  description:
-    "Frontend engineer building scalable, production-ready React applications with Next.js and TypeScript.",
+  description: siteDescription,
   openGraph: {
-    title: "Shahrukh Hughes | Frontend Engineer",
-    description:
-      "Frontend engineer building scalable, production-ready React applications with Next.js and TypeScript.",
+    title: siteTitle,
+    description: siteDescription,
     url: "https://shahrukhhughes.co.uk",
     siteName: "Shahrukh Hughes",
     locale: "en_GB",
     type: "website",
     images: ["/preview.png"],
   },
-  metadataBase: new URL("https://shahrukhhughes.co.uk"),
 };
 
 export default function RootLayout({
@@ -32,15 +34,7 @@ export default function RootLayout({
         className="bg-background text-foreground antialiased"
         suppressHydrationWarning
       >
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded"
-        >
-          Skip to main content
-        </a>
-        <div className="max-w-4xl mx-auto px-6 py-10">
-          <main id="main-content">{children}</main>
-        </div>
+        <div className="max-w-4xl mx-auto px-6 py-10">{children}</div>
       </body>
     </html>
   );

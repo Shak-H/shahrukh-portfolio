@@ -1,3 +1,6 @@
+import { useId } from "react";
+import Link from "next/link";
+
 type ProjectCardProps = {
   title: string;
   description: string;
@@ -11,20 +14,33 @@ export default function ProjectCard({
   href,
   contributions,
 }: ProjectCardProps) {
-  return (
-    <a
-      href={href}
-      className="block border p-6 rounded hover:bg-gray-50 dark:hover:bg-gray-800 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition"
-    >
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+  const titleId = useId();
 
-      <p className="text-gray-600 dark:text-gray-400">{description}</p>
+  return (
+    <Link
+      href={href}
+      aria-labelledby={titleId}
+      className="flex h-full flex-col rounded-2xl border border-slate-700 bg-slate-900 p-5 text-slate-100 transition-colors hover:border-cyan-300 hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:p-6"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <h2 id={titleId} className="text-lg font-semibold">
+          {title}
+        </h2>
+        <span
+          aria-hidden="true"
+          className="shrink-0 text-xl leading-none text-cyan-300"
+        >
+          →
+        </span>
+      </div>
+
+      <p className="mt-3 leading-relaxed text-slate-300">{description}</p>
 
       {contributions && (
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+        <p className="mt-auto pt-4 text-sm font-medium text-slate-400">
           {contributions}
         </p>
       )}
-    </a>
+    </Link>
   );
 }

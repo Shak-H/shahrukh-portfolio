@@ -1,34 +1,30 @@
-import Navbar from "@/components/Navbar";
-import Link from "next/link";
 import type { Metadata } from "next";
+import ProjectCard from "@/components/ProjectCard";
+import FloodlitLayout from "@/components/FloodlitLayout";
+import { portfolioProjects } from "./portfolio-projects";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Selected frontend projects including AI platforms and mobile-first ordering applications.",
+    "Explore two frontend case studies: PersonAI’s simulated research workflows and Marston’s mobile Order & Pay experience.",
 };
 
 export default function Projects() {
   return (
-    <>
-      <Navbar />
+    <FloodlitLayout>
+      <div className="mx-auto max-w-4xl px-4 pb-16">
+        <h1 className="font-serif text-4xl font-semibold tracking-tight text-[#f5f0e5] sm:text-5xl">
+          Projects
+        </h1>
 
-      <h2 className="text-2xl font-bold mb-6">Projects</h2>
-
-      <div className="space-y-4 flex flex-col">
-        <Link
-          href="/projects/marstons"
-          className="block border border-gray-200 dark:border-gray-700 p-4 rounded hover:bg-gray-50 dark:hover:bg-gray-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition"
-        >
-          Marston&apos;s App
-        </Link>
-        <Link
-          href="/projects/personai"
-          className="block border border-gray-200 dark:border-gray-700 p-4 rounded hover:bg-gray-50 dark:hover:bg-gray-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 transition"
-        >
-          PersonAI Platform
-        </Link>
+        <ul className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2">
+          {portfolioProjects.map((project) => (
+            <li key={project.href}>
+              <ProjectCard {...project} />
+            </li>
+          ))}
+        </ul>
       </div>
-    </>
+    </FloodlitLayout>
   );
 }
